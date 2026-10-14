@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fundamentos de actividades interactivas — Curso para docentes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:wght@500;700&display=swap">
+<style>
+:root{--bg:#fff;--card:#f2f7ff;--ink:#0b2a5b;--mut:#4a5f86;--ac:#1d4fb8;--hl:#cfe0fb;--bd:#c9d8f0;--ok:#1f7a4d;--bad:#b3261e;--okb:#d8f0e2;--badb:#f8d9d6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1730;--card:#112347;--ink:#e8f0ff;--mut:#a9bcdf;--ac:#7fb0ff;--hl:#1f4b99;--bd:#26427a;--ok:#6fd49c;--bad:#ff8f86;--okb:#1d3a2c;--badb:#4a2523;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1730;--card:#112347;--ink:#e8f0ff;--mut:#a9bcdf;--ac:#7fb0ff;--hl:#1f4b99;--bd:#26427a;--ok:#6fd49c;--bad:#ff8f86;--okb:#1d3a2c;--badb:#4a2523;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;height:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:Literata,Georgia,serif;line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(2rem,5vw,3.2rem);max-width:18ch}h2{font-size:1.7rem}h3{font-size:1.2rem}
+p{max-width:68ch;margin:0 0 1em}
+a{color:var(--ac)}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.w{max-width:960px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--bd);z-index:5}
+nav .w{display:flex;gap:18px;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem}
+header{padding:56px 0 40px;background:#1d4fb8;color:#fff}
+header p.l{font-size:1.15rem;color:#dbe7ff}
+section{padding:48px 0;border-bottom:1px solid var(--bd)}
+.mod{border-left:4px solid var(--ac);padding:4px 0 4px 18px;margin-bottom:26px}
+.mod small{color:var(--mut)}
+.pill{display:inline-block;border:1px dashed var(--mut);color:var(--mut);border-radius:99px;padding:2px 12px;font-size:.85rem;margin:4px 6px 0 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab,.btn{font:inherit;font-weight:600;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:8px 16px;border-radius:6px;cursor:pointer}
+.tab[aria-selected="true"],.btn.p{background:var(--ink);color:var(--bg)}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:22px}
+.row{display:flex;gap:24px;flex-wrap:wrap}.row>*{flex:1 1 280px}
+#cw{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));max-width:520px;gap:2px}
+.cell{position:relative;aspect-ratio:1}.cell.off{visibility:hidden}
+.cell b{position:absolute;top:1px;left:3px;font-size:.62rem;color:var(--mut);pointer-events:none}
+.cell input{width:100%;height:100%;padding:0;text-align:center;text-transform:uppercase;font:700 1rem inherit;border:1px solid var(--ink);background:var(--hl);color:var(--ink);border-radius:2px}
+.cell input.ok{background:var(--okb);color:var(--ok)}.cell input.bad{background:var(--badb);color:var(--bad)}
+ol.cl{padding-left:1.2em;margin:0 0 1em}ol.cl li{margin-bottom:4px}
+.res{font-weight:700;min-height:1.6em;margin-top:12px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.fb p{max-width:none;line-height:2.4}
+.fb input{font:inherit;width:11ch;border:0;border-bottom:2px solid var(--ink);background:var(--bg);color:var(--ink);text-align:center;margin:0 4px}
+.fb input.ok{border-color:var(--ok);background:var(--okb)}.fb input.bad{border-color:var(--bad);background:var(--badb)}
+.i{font:inherit;border:1px solid var(--mut);color:var(--mut);background:none;border-radius:50%;width:24px;height:24px;cursor:pointer;line-height:1}
+.fb small{color:var(--mut);margin-left:6px}
+#scr{position:relative;aspect-ratio:16/9;background:#123d8a;color:#fff;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:6%}
+#scr h3{color:#bcd4ff;font-size:clamp(1.1rem,3vw,1.8rem)}#scr p{margin:0}
+#ov{position:absolute;inset:0;background:rgba(11,42,91,.95);padding:5%;overflow:auto;display:none}
+#ov.on{display:block}#ov button.o{display:block;width:100%;text-align:left;margin:6px 0;padding:8px 12px;font:inherit;border-radius:6px;border:1px solid #fff;background:transparent;color:#fff;cursor:pointer}
+#ov button.o.ok{background:#1f7a4d}#ov button.o.bad{background:#b3261e}
+#ov table{border-collapse:collapse;width:100%}#ov td,#ov th{border:1px solid #8fa0bd;padding:6px;text-align:left}
+.bar{position:relative;display:flex;align-items:center;gap:10px;margin-top:10px}
+.bar input[type=range]{flex:1;accent-color:var(--ac)}
+.mk{position:absolute;top:-3px;width:10px;height:10px;border-radius:50%;background:var(--hl);border:2px solid var(--ink);pointer-events:none}
+.ck label{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
+.ck{flex:1 1 260px}
+dt{font-weight:700;margin-top:10px}dd{margin:0;color:var(--mut)}
+.demo{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);border-radius:8px;padding:12px 16px;max-width:68ch}
+details{border:1px solid var(--bd);border-radius:8px;background:var(--card);margin:10px 0;padding:0 16px}
+summary{cursor:pointer;font-weight:700;padding:12px 0}details[open] summary{border-bottom:1px solid var(--bd);margin-bottom:10px}
+h4{margin:14px 0 6px;font-size:1.02rem}details ol{padding-left:1.3em}details li{margin-bottom:6px}details p{margin-bottom:.7em}details .pill{margin:6px 6px 14px 0}
+footer{padding:30px 0 50px;color:var(--mut);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><div class="w"><a href="#inicio">Presentación</a><a href="#modulos">Módulos</a><a href="#actividades">Actividades</a><a href="#evaluacion">Evaluación</a><a href="#glosario">Glosario</a></div></nav>
+
+<header id="inicio"><div class="w">
+<h1>Fundamentos de actividades interactivas</h1>
+<p class="l">Curso para docentes de licenciatura del SUAyED, UNAM. Aprende a diseñar crucigramas, ejercicios de completar espacios y videos interactivos para la enseñanza a distancia.</p>
+<p class="demo"><b>Versión de demostración.</b> El curso completo se imparte en Moodle con H5P. Esta página resume su estructura y sus materiales, y permite probar versiones de muestra de las tres actividades, programadas directamente en la página.</p>
+</div></header>
+
+<section><div class="w">
+<h2>Bienvenida y objetivos</h2>
+<p>Este curso busca que el profesorado cree actividades educativas interactivas y las integre en entornos virtuales de aprendizaje. Está pensado para docentes que ya usan una plataforma como Moodle y quieren dejar atrás el reforzamiento repetitivo de los temas.</p>
+<h3>Al terminar, podrás</h3>
+<ul>
+<li>Identificar los elementos y herramientas fundamentales para diseñar actividades interactivas.</li>
+<li>Crear crucigramas, actividades de completar espacios y videos interactivos.</li>
+<li>Integrar esas actividades en tu curso para enriquecer la enseñanza y el aprendizaje.</li>
+</ul>
+</div></section>
+
+<section id="modulos"><div class="w">
+<h2>Módulos</h2>
+<div class="mod"><h3>Módulo 1. Fundamentos de diseño de actividades interactivas</h3><small>Duración: 30 minutos</small>
+<p>Conceptos básicos de diseño. Qué es una actividad digital y qué la vuelve interactiva.</p></div>
+<div class="mod"><h3>Módulo 2. Introducción a H5P en Moodle</h3><small>Duración: 1 hora</small>
+<p>Qué es H5P y cómo funciona dentro de Moodle. Cierra con un cuestionario para revisar los conceptos.</p></div>
+<div class="mod"><h3>Módulo 3. Integración de H5P en Moodle</h3><small>Duración: 2 horas</small>
+<p>Configuración de H5P en Moodle y paso a paso para tres actividades. Cada una incluye una descripción, un video tutorial y un tutorial en PDF. Despliega cada apartado para ver su contenido.</p>
+
+<details><summary>Pasos comunes para crear cualquier actividad</summary>
+<ol>
+<li>Ingresa a la plataforma del SUAyED, elige el acceso a la plataforma Moodle e inicia sesión con tu usuario y contraseña.</li>
+<li>En "Mis cursos", abre el curso que vas a editar y activa el "Modo de edición" en la parte superior.</li>
+<li>Ubica el módulo o tópico y pulsa "Añadir una actividad o recurso".</li>
+<li>Elige "Contenido interactivo" (símbolo H5P) y escribe una descripción de la actividad.</li>
+<li>Marca "Mostrar descripción en la página del curso" para que el estudiante la vea de inmediato.</li>
+<li>En el editor de H5P busca la actividad, pulsa "Detalles" y luego "Usar".</li>
+<li>Al terminar, define la calificación aprobatoria en "Calificación" y pulsa "Guardar cambios y mostrar".</li>
+</ol></details>
+
+<details><summary>Crucigrama</summary>
+<h4>Descripción</h4>
+<p><b>Qué es.</b> Un juego o pasatiempo en el que se completan los huecos de un dibujo con letras. Una vez resuelto, tiene palabras que se leen en vertical y horizontal y se cruzan entre sí (Porto y Gardey, 2021).</p>
+<p><b>Origen.</b> Se cree que surgió en el siglo I, y el primer rastro se halló en las ruinas de Pompeya. El primer crucigrama moderno lo publicó Arthur Wynne en el New York World el 21 de diciembre de 1913.</p>
+<p><b>Elementos.</b> La grilla, con celdas numeradas, y las referencias, que son definiciones breves ligadas a cada número. En las casillas compartidas por dos palabras la letra coincide, lo que ayuda a encontrar las demás.</p>
+<p><b>Características.</b> Es creativo, flexible porque se adapta al ritmo de cada estudiante, e interdisciplinario porque integra distintas áreas curriculares (Cabrera, 2020).</p>
+<p><b>Uso.</b> Sirve a docentes y estudiantes como herramienta de estudio, para organizar información con técnicas didácticas que incluyen juegos, y como recurso para dinamizar la clase en cualquier grado.</p>
+<h4>Cómo se crea en H5P</h4>
+<ol>
+<li>Sigue los pasos comunes y elige "Crossword".</li>
+<li>Escribe el título y la descripción de la tarea.</li>
+<li>En "Words" captura cada pista (clue) y su respuesta (answer). Usa "Añadir word" para agregar más.</li>
+<li>Opcional, "Extra clue": agrega una pista extra en imagen, texto o video de YouTube. Para la imagen puedes añadir texto alternativo y texto al pasar el ratón.</li>
+<li>Opcional: fija una palabra en una fila y columna concretas. No es necesario activarlo, y si se configura mal el crucigrama no se genera.</li>
+<li>"Overall solution word": palabra formada con las respuestas, que sirve de indicador.</li>
+<li>Retroalimentación global: define los rangos de puntaje con su comentario y usa "Distribuir uniformemente".</li>
+<li>Personalización: imagen de fondo, color de las celdas y color de las pistas.</li>
+<li>"Behavioural settings": activa la retroalimentación instantánea y desactiva el reintento y el botón de mostrar solución, si no quieres que estén disponibles.</li>
+<li>Define la calificación aprobatoria y pulsa "Guardar cambios y mostrar". El signo de interrogación de cada palabra muestra su pista extra.</li>
+</ol>
+<span class="pill">Video tutorial: próximamente</span><span class="pill">Tutorial PDF: próximamente</span></details>
+
+<details><summary>Completar espacios (Fill in the Blanks)</summary>
+<h4>Descripción</h4>
+<p><b>En qué consiste.</b> El estudiante escribe palabras o números, por ejemplo fechas, para completar un enunciado según el tema de la actividad.</p>
+<p><b>Características.</b> Al terminar el estudiante ve sus resultados, lo que permite una retroalimentación inmediata. Sus ventajas son la rapidez de aplicación, la facilidad de aprendizaje y una retroalimentación eficaz (H5P, 2024).</p>
+<h4>Cómo se crea en H5P</h4>
+<ol>
+<li>Sigue los pasos comunes y elige "Fill in the Blanks".</li>
+<li>Escribe el título. En "Medios" puedes añadir una imagen, un audio o un video; si la imagen solo decora, marca "Decorativo solamente". El texto al pasar el ratón es opcional.</li>
+<li>Escribe la "Descripción del trabajo", una guía para el estudiante.</li>
+<li>En "Bloques de texto" escribe cada oración. Marca el hueco con asteriscos: *respuesta*. Para aceptar otras respuestas, sepáralas con una diagonal: *respuesta/alternativa*.</li>
+<li>Para dar un consejo, agrégalo tras dos puntos dentro de los asteriscos: *respuesta:consejo*.</li>
+<li>Usa "Añadir bloque de texto" para cada nuevo enunciado.</li>
+<li>Retroalimentación global: define los rangos de puntaje y un comentario para cada uno.</li>
+<li>"Configuraciones del comportamiento": por ejemplo, que las mayúsculas y minúsculas importen y que se requiera contestar todos los campos antes de ver la solución.</li>
+<li>Define la calificación aprobatoria y guarda. Para que el estudiante pueda ver las respuestas correctas, habilita "Mostrar solución" en Configuración.</li>
+</ol>
+<span class="pill">Video tutorial: próximamente</span><span class="pill">Tutorial PDF: próximamente</span></details>
+
+<details><summary>Video interactivo</summary>
+<h4>Descripción</h4>
+<p><b>Diferencia con el video tradicional.</b> El tradicional es una proyección con audio e imagen. El interactivo incluye actividades que el espectador realiza mientras lo ve y que complementan el contenido.</p>
+<p><b>Qué es.</b> Contenido audiovisual con el que se interactúa. Admite cambios de punto de vista, juegos de selección, encuestas o recogida de datos (Rodriguez, 2024).</p>
+<p><b>Elementos.</b> Preguntas, que pueden ser comentarios, notas o de opción múltiple, y espacios de trabajo e intercambio. En la docencia favorece el trabajo en equipo, la investigación, la participación y la escucha activa.</p>
+<p><b>Características.</b> Genera mayor atención, es un material de apoyo didáctico y una innovación tecnológica que involucra activamente al estudiante.</p>
+<p><b>Uso.</b> Autores como Gayesky y Williams (1984) y Bettex (1984) llaman interactivo a todo video-programa en el que el espectador puede intervenir (Ibáñez, 1992).</p>
+<h4>Cómo se crea en H5P</h4>
+<ol>
+<li>Sigue los pasos comunes y elige "Interactive Video".</li>
+<li><b>Paso 1.</b> Sube el video o pega su enlace, escribe el título y, si quieres, una descripción corta (no funciona con videos de YouTube) y una imagen de cartel.</li>
+<li><b>Paso 2.</b> Pulsa "Agregar interacciones". Arrastra cada interacción sobre el video y define el tiempo de aparición, si pausa el video, y la etiqueta junto al ícono.</li>
+<li>Interacciones usadas: Label, Text, Table, Link (URL), Image, Statements, Single Choice Set, Multiple Choice y True/False. En Statements y Single Choice Set la primera opción que escribes es la correcta.</li>
+<li>Text, Image y similares pueden mostrarse como botón o como cartel, con color de fondo y, si quieres, un enlace al hacer clic.</li>
+<li>No se recomiendan Fill in the Blanks, Drag and Drop, Mark the Words ni Drag the Words, porque pueden producir errores. Crosswords y Hotspots no son necesarios en este tipo de video.</li>
+<li>Cada pregunta puede llevar su retroalimentación global por rangos de puntaje.</li>
+<li><b>Paso 3.</b> En "Resumen del trabajo" pon el nombre de la evaluación final, un texto introductorio y las oraciones del resumen (la primera es la correcta), con sus rangos de puntaje.</li>
+<li>Define la calificación aprobatoria y máxima, y pulsa "Guardar cambios y mostrar".</li>
+</ol>
+<span class="pill">Video tutorial: próximamente</span><span class="pill">Tutorial PDF: próximamente</span></details>
+</div>
+</div></section>
+
+<section id="actividades"><div class="w">
+<h2>Prueba las actividades</h2>
+<p>Son ejemplos de lo que los docentes aprenden a construir. Su contenido es de muestra.</p>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" data-t="p1" aria-selected="true">Crucigrama</button>
+<button class="tab" role="tab" data-t="p2" aria-selected="false">Completar espacios</button>
+<button class="tab" role="tab" data-t="p3" aria-selected="false">Video interactivo</button></div>
+
+<div class="panel pane" id="p1"><div class="row"><div><div id="cw" role="group" aria-label="Crucigrama"></div></div>
+<div><h3>Horizontal</h3><ol class="cl" id="ch"></ol><h3>Vertical</h3><ol class="cl" id="cv"></ol></div></div>
+<div class="acts"><button class="btn p" id="cwc">Comprobar</button><button class="btn" id="cws">Mostrar solución</button><button class="btn" id="cwx">Reintentar</button></div>
+<div class="res" id="cwr" aria-live="polite"></div></div>
+
+<div class="panel pane fb" id="p2" hidden><p><b>Completa las frases con la palabra que falta.</b> Si necesitas ayuda, toca el botón de pista.</p><div id="fbl"></div>
+<div class="acts"><button class="btn p" id="fbc">Comprobar</button><button class="btn" id="fbs">Mostrar solución</button><button class="btn" id="fbx">Reintentar</button></div>
+<div class="res" id="fbr" aria-live="polite"></div></div>
+
+<div class="panel pane" id="p3" hidden><p>Demostración simulada: el video avanza solo y se detiene en cada interacción. Aquí se insertará el video real del curso.</p>
+<div id="scr"><h3 id="st"></h3><p id="sp"></p><div id="ov"></div></div>
+<div class="bar"><button class="btn p" id="pl" style="min-width:5.5em">Reproducir</button><div style="position:relative;flex:1;display:flex"><input type="range" id="sk" min="0" max="40" step="0.1" value="0" aria-label="Progreso del video" style="width:100%"></div><span id="tm">0:00</span></div>
+<div class="res" id="vr" aria-live="polite"></div></div>
+</div></section>
+
+<section id="evaluacion"><div class="w">
+<h2>Evaluación final</h2>
+<p>Cada participante crea una actividad (crucigrama, completar espacios o video interactivo) en un curso de su elección y entrega capturas de pantalla como evidencia. Cada actividad debe incluir pantallas con la evidencia. Esta es la lista de cotejo de cada una.</p>
+<div class="row">
+<div class="ck panel" data-n="Crucigrama"><h3>Crucigrama</h3>
+<label><input type="checkbox">Explica la asignatura y el tema donde lo usará</label><label><input type="checkbox">Incluye 5 conceptos como mínimo</label><label><input type="checkbox">Incluye una imagen de fondo</label><label><input type="checkbox">Muestra la evidencia de su solución</label><label><input type="checkbox">Muestra la retroalimentación al estudiante</label><div class="res"></div></div>
+<div class="ck panel"><h3>Completar espacios</h3>
+<label><input type="checkbox">Explica la asignatura y el tema donde lo usará</label><label><input type="checkbox">Incluye de 7 a 10 conceptos del tema</label><label><input type="checkbox">Incluye una imagen de fondo</label><label><input type="checkbox">Muestra la evidencia de su solución</label><label><input type="checkbox">Muestra la retroalimentación al estudiante</label><div class="res"></div></div>
+<div class="ck panel"><h3>Video interactivo</h3>
+<label><input type="checkbox">Explica la asignatura y el tema donde lo usará</label><label><input type="checkbox">Incluye al menos 4 interacciones diversas</label><label><input type="checkbox">Muestra la evidencia de su solución</label><label><input type="checkbox">Muestra la retroalimentación al estudiante</label><div class="res"></div></div>
+</div></div></section>
+
+<section id="glosario"><div class="w">
+<h2>Glosario</h2>
+<dl>
+<dt>H5P</dt><dd>Herramienta libre para crear contenido interactivo, como cuestionarios, videos y juegos, que se integra en plataformas como Moodle.</dd>
+<dt>Moodle</dt><dd>Plataforma educativa en línea donde se organizan cursos, actividades y calificaciones.</dd>
+<dt>Retroalimentación</dt><dd>Mensaje que recibe el estudiante sobre su desempeño, por ejemplo según el rango de puntaje que obtuvo.</dd>
+<dt>Pista</dt><dd>Ayuda adicional, en texto, imagen o video, que orienta la respuesta sin darla.</dd>
+<dt>Video interactivo</dt><dd>Video con preguntas, textos o imágenes que aparecen en momentos definidos y piden una acción del espectador.</dd>
+</dl></div></section>
+
+<footer><div class="w">Diseño instruccional de Emiliano Muñoz. Contenido basado en el diagnóstico de la institución de práctica, el SUAyED de la UNAM. Fuentes citadas en las descripciones: Porto y Gardey (2021), Cabrera (2020), Rodriguez (2024), H5P (2024) e Ibáñez (1992).</div></footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],
+norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim(),
+fb=p=>p<=40?'Mejorable':p<=70?'Aceptable':'Excelente',
+res=(s,o,t)=>$(s).textContent=o+' de '+t+' correctas. '+fb(Math.round(o/t*100));
+$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.setAttribute('aria-selected',x===b));$$('.pane').forEach(p=>p.hidden=p.id!==b.dataset.t)});
+
+/* Crucigrama */
+const W=[
+{w:'PLATAFORMA',r:0,c:2,d:1,q:'Entorno en línea donde se imparte el curso.'},
+{w:'PISTA',r:0,c:2,d:0,q:'Ayuda extra que ofrece una actividad.'},
+{w:'ACTIVIDAD',r:2,c:2,d:0,q:'Tarea interactiva que realiza el estudiante.'},
+{w:'IMAGEN',r:4,c:0,d:0,q:'Recurso visual que puede usarse de fondo.'},
+{w:'MOODLE',r:6,c:1,d:0,q:'Plataforma educativa donde se integra H5P.'},
+{w:'MODULO',r:8,c:2,d:0,q:'Cada una de las tres partes del curso.'}];
+const cells={},nums={};let n=0;
+const pos=(x,i)=>(x.r+(x.d?i:0))+'_'+(x.c+(x.d?0:i));
+W.forEach(x=>{[...x.w].forEach((ch,i)=>{const k=pos(x,i);cells[k]=cells[k]||{ch}});const k=x.r+'_'+x.c;if(!nums[k])nums[k]=++n;x.n=nums[k];
+$(x.d?'#cv':'#ch').insertAdjacentHTML('beforeend','<li value="'+x.n+'">'+x.q+' <small>('+x.w.length+' letras)</small></li>')});
+for(let r=0;r<10;r++)for(let c=0;c<11;c++){const k=r+'_'+c,d=document.createElement('div');d.className='cell';
+if(cells[k]){d.innerHTML=(nums[k]?'<b>'+nums[k]+'</b>':'')+'<input maxlength="1" aria-label="Fila '+(r+1)+', columna '+(c+1)+'">';const e=cells[k].el=d.querySelector('input');
+e.oninput=()=>{const nx=cells[r+'_'+(c+1)]||cells[(r+1)+'_'+c];if(e.value&&nx)nx.el.focus()}}else d.className+=' off';$('#cw').appendChild(d)}
+$('#cwc').onclick=()=>{let ok=0;Object.values(cells).forEach(o=>{const v=norm(o.el.value);o.el.className=v?(v===norm(o.ch)?'ok':'bad'):''});
+W.forEach(x=>{if([...x.w].every((ch,i)=>norm(cells[pos(x,i)].el.value)===norm(ch)))ok++});res('#cwr',ok,W.length)};
+$('#cws').onclick=()=>Object.values(cells).forEach(o=>{o.el.value=o.ch;o.el.className='ok'});
+$('#cwx').onclick=()=>{Object.values(cells).forEach(o=>{o.el.value='';o.el.className=''});$('#cwr').textContent=''};
+
+/* Completar espacios */
+const F=[
+['La Ciudad de México fue fundada por los españoles en el año ',['1521'],'.','Es el año de la caída de Tenochtitlán.'],
+['El nombre original de la Ciudad de México era ',['Tenochtitlán'],'.','Era la capital mexica.'],
+['El conquistador español que lideró la conquista de Tenochtitlán fue ',['Hernán Cortés','Cortés'],'.','Es de origen español.'],
+['La construcción más famosa de la época mexica en la ciudad era el ',['Templo Mayor'],'.','Era el centro ceremonial.'],
+['La principal actividad económica en la ciudad durante la época colonial era el ',['comercio'],'.','Se intercambiaban productos en mercados.']];
+F.forEach((f,i)=>$('#fbl').insertAdjacentHTML('beforeend','<p>'+f[0]+'<input data-i="'+i+'" aria-label="Espacio '+(i+1)+'">'+f[2]+' <button class="i" aria-label="Pista" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">?</button><small hidden>'+f[3]+'</small></p>'));
+$('#fbc').onclick=()=>{let ok=0;$$('#fbl input').forEach(e=>{const g=F[e.dataset.i][1].some(a=>norm(a)===norm(e.value)),v=e.value.trim();e.className=v?(g?'ok':'bad'):'';if(g)ok++});res('#fbr',ok,F.length)};
+$('#fbs').onclick=()=>$$('#fbl input').forEach(e=>{e.value=F[e.dataset.i][1][0];e.className='ok'});
+$('#fbx').onclick=()=>{$$('#fbl input').forEach(e=>{e.value='';e.className=''});$('#fbr').textContent=''};
+
+/* Video interactivo simulado */
+const S=[[0,'¿Qué es un video interactivo?','Contenido audiovisual en el que el espectador interviene.'],[10,'Elementos importantes','Preguntas y espacios de intercambio.'],[20,'Características','Genera mayor atención y sirve como apoyo didáctico.'],[30,'Uso en la docencia','Trabajo en equipo, participación y escucha activa.']];
+const I=[
+{t:6,k:'txt',h:'Antes de seguir',x:'Un video interactivo pide al espectador que haga algo mientras mira.'},
+{t:14,k:'q',h:'Opción única: ¿qué distingue a un video interactivo del tradicional?',o:['Incluye actividades que el espectador realiza','Solo tiene audio e imagen','No se puede pausar'],a:0},
+{t:24,k:'q',h:'Verdadero o falso: un video interactivo ayuda a mantener la atención.',o:['Verdadero','Falso'],a:0},
+{t:33,k:'tb',h:'Tabla de comparación'}];
+let t=0,tm=null,done=new Set(),pts=0;const sk=$('#sk'),ov=$('#ov');
+I.forEach(i=>sk.insertAdjacentHTML('afterend','<span class="mk" style="left:calc('+i.t/40*100+'% - 5px)"></span>'));
+const fmt=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+function draw(){const s=[...S].reverse().find(x=>t>=x[0]);$('#st').textContent=s[1];$('#sp').textContent=s[2];sk.value=t;$('#tm').textContent=fmt(t)+' / 0:40'}
+function stop(){clearInterval(tm);tm=null;$('#pl').textContent='Reproducir'}
+function go(){if(t>=40)t=0,done=new Set(),pts=0,$('#vr').textContent='';$('#pl').textContent='Pausar';tm=setInterval(tick,100)}
+function tick(){t=Math.min(40,t+.1);draw();const i=I.findIndex((x,j)=>!done.has(j)&&t>=x.t);if(i>-1){stop();show(i)}else if(t>=40){stop();const p=Math.round(pts/2*100);$('#vr').textContent='Fin del video. '+pts+' de 2 preguntas correctas. '+fb(p)}}
+function show(j){done.add(j);const x=I[j];let h='<h3 style="color:#bcd4ff">'+x.h+'</h3>';
+if(x.k==='txt')h+='<p>'+x.x+'</p>';
+if(x.k==='q')h+=x.o.map((o,i)=>'<button class="o" data-a="'+i+'">'+o+'</button>').join('');
+if(x.k==='tb')h+='<table><tr><th></th><th>Tradicional</th><th>Interactivo</th></tr><tr><td>Espectador</td><td>Observa</td><td>Participa</td></tr><tr><td>Elementos</td><td>Audio e imagen</td><td>Audio, imagen y actividades</td></tr></table>';
+ov.innerHTML=h+'<p style="margin-top:12px"><button class="btn" style="color:#fff;border-color:#fff" id="cn">Continuar</button></p>';ov.className='on';ov.dataset.j=j;
+$('#cn').onclick=()=>{ov.className='';go()}}
+ov.onclick=e=>{const b=e.target.closest('button.o');if(!b||ov.querySelector('.ok,.bad'))return;const x=I[ov.dataset.j],g=+b.dataset.a===x.a;b.classList.add(g?'ok':'bad');if(g)pts++;else ov.querySelectorAll('button.o')[x.a].classList.add('ok')};
+$('#pl').onclick=()=>tm?stop():go();
+sk.oninput=()=>{stop();ov.className='';t=+sk.value;done=new Set(I.map((x,j)=>x.t<=t?j:-1).filter(j=>j>-1));draw()};
+draw();
+
+/* Listas de cotejo */
+$$('.ck').forEach(c=>{const b=c.querySelectorAll('input'),r=c.querySelector('.res'),u=()=>r.textContent=[...b].filter(x=>x.checked).length+' de '+b.length+' criterios cumplidos';b.forEach(x=>x.onchange=u);u()});
+</script>
+</body>
+</html>

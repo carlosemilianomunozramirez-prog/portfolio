@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carlos Emiliano Muñoz Ramírez | Diseñador Instruccional & E-Learning</title>
+  <meta name="description" content="Portfolio profesional de Carlos Emiliano Muñoz Ramírez, Diseñador Instruccional & E-Learning. Proyectos con Six Flags México, Universidad Simón Bolívar y más." />
+
+  <!-- Preload critical fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & TOKENS ────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --c-primary:   #1a56db;
+      --c-primary-d: #1341a8;
+      --c-accent:    #0ea5e9;
+      --c-gold:      #f59e0b;
+      --c-bg:        #f8fafc;
+      --c-surface:   #ffffff;
+      --c-surface2:  #f1f5f9;
+      --c-border:    #e2e8f0;
+      --c-text:      #0f172a;
+      --c-muted:     #64748b;
+      --c-dark:      #0f172a;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,.08);
+      --shadow-md:   0 4px 16px rgba(0,0,0,.1);
+      --shadow-lg:   0 12px 40px rgba(0,0,0,.13);
+      --radius:      16px;
+      --radius-sm:   8px;
+      --t:           .25s ease;
+      font-size: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--c-bg);
+      color: var(--c-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--c-surface2); }
+    ::-webkit-scrollbar-thumb { background: var(--c-primary); border-radius: 99px; }
+
+    /* ─── UTILITY ───────────────────────────────────────── */
+    .container { max-width: 1120px; margin-inline: auto; padding-inline: 1.5rem; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+
+    /* ─── LANGUAGE TOGGLE ───────────────────────────────── */
+    .lang-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--c-surface);
+      border-bottom: 1px solid var(--c-border);
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.9);
+    }
+    .lang-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      max-width: 1120px;
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+    .logo-text {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--c-primary);
+      text-decoration: none;
+      letter-spacing: -.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--c-muted);
+      text-decoration: none;
+      transition: color var(--t);
+    }
+    .nav-links a:hover { color: var(--c-primary); }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--c-surface2);
+      border: 1px solid var(--c-border);
+      border-radius: 99px;
+      padding: .3rem .9rem;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--t);
+      color: var(--c-text);
+    }
+    .lang-btn:hover { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }
+
+    /* ─── HERO ──────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding-top: 56px;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(14,165,233,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(26,86,219,.08) 0%, transparent 60%),
+        var(--c-bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 80px, var(--c-border) 80px, var(--c-border) 81px),
+        repeating-linear-gradient(90deg, transparent, transparent 80px, var(--c-border) 80px, var(--c-border) 81px);
+      opacity: .35;
+    }
+    .hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 780px;
+      padding: 4rem 1.5rem;
+      animation: fade-up .8s ease both;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(26,86,219,.1);
+      color: var(--c-primary);
+      border: 1px solid rgba(26,86,219,.2);
+      border-radius: 99px;
+      padding: .35rem 1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--c-accent);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--c-dark);
+      margin-bottom: .5rem;
+    }
+    .hero-name span { color: var(--c-primary); }
+    .hero-title {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 400;
+      color: var(--c-muted);
+      margin-bottom: 2.5rem;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.75rem;
+      border-radius: 99px;
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--t);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--c-primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(26,86,219,.35);
+    }
+    .btn-primary:hover {
+      background: var(--c-primary-d);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(26,86,219,.45);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--c-primary);
+      border: 2px solid var(--c-primary);
+    }
+    .btn-outline:hover {
+      background: var(--c-primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ─── STATS STRIP ───────────────────────────────────── */
+    .stats-strip {
+      background: var(--c-dark);
+      padding: 2.5rem 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+    .stat-num span { color: var(--c-accent); }
+    .stat-label {
+      font-size: .8rem;
+      color: #94a3b8;
+      margin-top: .25rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* ─── SECTIONS ──────────────────────────────────────── */
+    section { padding: 5rem 0; }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--c-primary);
+      margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800;
+      color: var(--c-dark);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--c-muted);
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────────── */
+    .about { background: var(--c-surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-avatar {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-accent) 100%);
+      display: grid;
+      place-items: center;
+      font-size: 6rem;
+      color: #fff;
+      margin-inline: auto;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-avatar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='rgba(255,255,255,.15)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+    }
+    .about-initials {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.9);
+    }
+    .about-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.5rem;
+    }
+    .skill-tag {
+      background: var(--c-surface2);
+      border: 1px solid var(--c-border);
+      border-radius: 99px;
+      padding: .3rem .9rem;
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--c-text);
+      transition: all var(--t);
+    }
+    .skill-tag:hover {
+      background: var(--c-primary);
+      color: #fff;
+      border-color: var(--c-primary);
+    }
+
+    /* ─── PROJECT CARD ──────────────────────────────────── */
+    .projects { background: var(--c-bg); }
+    .project-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--t);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--c-primary);
+    }
+    .project-thumb {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-accent) 100%);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .project-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .project-thumb .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      display: grid;
+      place-items: center;
+      opacity: 1;
+      transition: opacity var(--t);
+    }
+    .project-thumb:hover .thumb-overlay { opacity: 0; }
+    .play-icon {
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,.95);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--c-primary);
+      font-size: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+      transition: transform var(--t);
+    }
+    .project-thumb:hover .play-icon { transform: scale(1.1); }
+    .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-org {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--c-primary);
+      margin-bottom: .5rem;
+    }
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--c-dark);
+      margin-bottom: .5rem;
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: .875rem;
+      color: var(--c-muted);
+      flex: 1;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .tag {
+      background: rgba(26,86,219,.08);
+      color: var(--c-primary);
+      border-radius: 99px;
+      padding: .2rem .7rem;
+      font-size: .72rem;
+      font-weight: 600;
+    }
+
+    /* ─── CARD (PDF/DOC) ────────────────────────────────── */
+    .doc-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: all var(--t);
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow-sm);
+    }
+    .doc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--c-primary);
+    }
+    .doc-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .doc-icon.pdf { background: rgba(220,38,38,.1); }
+    .doc-icon.ppt { background: rgba(234,88,12,.1); }
+    .doc-info h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--c-dark);
+      margin-bottom: .25rem;
+    }
+    .doc-info p {
+      font-size: .8rem;
+      color: var(--c-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── FEATURED BANNER ───────────────────────────────── */
+    .featured-banner {
+      background: linear-gradient(135deg, var(--c-primary) 0%, #0ea5e9 50%, #8b5cf6 100%);
+      border-radius: var(--radius);
+      padding: 3rem 2.5rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .featured-banner::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+    }
+    .featured-banner::after {
+      content: '';
+      position: absolute;
+      right: 60px; bottom: -80px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+    .featured-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+    .featured-banner p {
+      opacity: .85;
+      font-size: .95rem;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+    }
+    .featured-banner .btn {
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(4px);
+    }
+    .featured-banner .btn:hover {
+      background: rgba(255,255,255,.3);
+      transform: translateY(-2px);
+    }
+
+    /* ─── VIDEO MODAL ───────────────────────────────────── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-box {
+      background: #000;
+      border-radius: var(--radius);
+      overflow: hidden;
+      width: 100%;
+      max-width: 900px;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+      transform: scale(.95);
+      transition: transform .3s ease;
+    }
+    .modal-backdrop.open .modal-box { transform: scale(1); }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: #111;
+    }
+    .modal-title { color: #fff; font-weight: 600; font-size: .95rem; }
+    .modal-close {
+      background: rgba(255,255,255,.1);
+      border: none;
+      color: #fff;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background var(--t);
+      display: grid;
+      place-items: center;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.2); }
+    .modal-video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: block;
+    }
+
+    /* ─── CONTACT ───────────────────────────────────────── */
+    .contact { background: var(--c-surface); }
+    .contact-card {
+      background: var(--c-dark);
+      border-radius: var(--radius);
+      padding: 3.5rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(14,165,233,.2) 0%, transparent 70%);
+    }
+    .contact-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: .75rem;
+      position: relative;
+    }
+    .contact-card p {
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 99px;
+      padding: .85rem 2rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all var(--t);
+      position: relative;
+    }
+    .contact-email:hover {
+      background: var(--c-primary);
+      border-color: var(--c-primary);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────── */
+    footer {
+      background: var(--c-dark);
+      color: #64748b;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: .8rem;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* ─── ANIMATIONS ────────────────────────────────────── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+    .animate-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+
+    /* ─── DIVIDER ───────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-border), transparent);
+      margin: 3rem 0;
+    }
+
+    /* ─── H5P SECTION ───────────────────────────────────── */
+    .h5p-section { background: var(--c-bg); }
+    .h5p-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .h5p-item {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--t);
+      box-shadow: var(--shadow-sm);
+    }
+    .h5p-item:hover {
+      border-color: var(--c-primary);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-md);
+    }
+    .h5p-num {
+      width: 36px; height: 36px;
+      background: rgba(26,86,219,.1);
+      color: var(--c-primary);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: .8rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .h5p-item-name {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--c-dark);
+    }
+    .h5p-item-type {
+      font-size: .75rem;
+      color: var(--c-muted);
+    }
+
+    /* ─── RESPONSIVE NAV ────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .contact-card { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────────── -->
+  <header class="lang-bar" role="banner">
+    <div class="lang-bar-inner">
+      <a href="#inicio" class="logo-text">CEM · Portafolio</a>
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+          <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+          <li><a href="#fundamentos" data-i18n="nav.fundamentos">Curso Interactivo</a></li>
+          <li><a href="#documentos" data-i18n="nav.docs">Documentos</a></li>
+          <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="lang-btn" id="langToggle" aria-label="Cambiar idioma">
+        🌐 <span id="langLabel">EN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── HERO ──────────────────────────────────────────── -->
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span data-i18n="hero.badge">Disponible para proyectos</span>
+      </div>
+      <h1 class="hero-name">Carlos Emiliano<br/><span>Muñoz Ramírez</span></h1>
+      <p class="hero-title" data-i18n="hero.title">Diseñador Instruccional &amp; E-Learning</p>
+      <div class="hero-ctas">
+        <a href="#proyectos" class="btn btn-primary" data-i18n="hero.cta1">
+          ▶ Ver proyectos
+        </a>
+        <a href="#contacto" class="btn btn-outline" data-i18n="hero.cta2">
+          Contáctame
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ─────────────────────────────────────────── -->
+  <div class="stats-strip" aria-label="Estadísticas profesionales">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="animate-in">
+          <div class="stat-num">3<span>+</span></div>
+          <div class="stat-label" data-i18n="stats.projects">Proyectos clave</div>
+        </div>
+        <div class="animate-in">
+          <div class="stat-num">2<span></span></div>
+          <div class="stat-label" data-i18n="stats.orgs">Organizaciones</div>
+        </div>
+        <div class="animate-in">
+          <div class="stat-num">6<span>+</span></div>
+          <div class="stat-label" data-i18n="stats.resources">Recursos digitales</div>
+        </div>
+        <div class="animate-in">
+          <div class="stat-num">H5P</div>
+          <div class="stat-label" data-i18n="stats.tools">Herramientas e-learning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SOBRE MÍ ───────────────────────────────────────── -->
+  <section class="about" id="sobre-mi">
+    <div class="container">
+      <div class="about-grid">
+        <div class="animate-in">
+          <div class="about-avatar">
+            <span class="about-initials">CE</span>
+          </div>
+        </div>
+        <div class="animate-in">
+          <p class="section-label" data-i18n="about.label">Sobre mí</p>
+          <h2 class="section-title" data-i18n="about.title">Diseñando experiencias<br/>de aprendizaje que impactan</h2>
+          <p class="section-sub" data-i18n="about.desc">
+            Soy diseñador instruccional con experiencia en creación de contenido digital educativo, producción de videos de capacitación y desarrollo de cursos en plataformas como Moodle y H5P. He colaborado con instituciones académicas y empresas como Six Flags México y la Universidad Simón Bolívar.
+          </p>
+          <div class="about-skills">
+            <span class="skill-tag">Diseño instruccional</span>
+            <span class="skill-tag">E-learning</span>
+            <span class="skill-tag">H5P</span>
+            <span class="skill-tag">Moodle</span>
+            <span class="skill-tag">Producción de video</span>
+            <span class="skill-tag">TikTok educativo</span>
+            <span class="skill-tag">Guionismo</span>
+            <span class="skill-tag">Capacitación</span>
+            <span class="skill-tag">ADDIE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROYECTOS EN VIDEO ─────────────────────────────── -->
+  <section class="projects" id="proyectos">
+    <div class="container">
+      <p class="section-label" data-i18n="projects.label">Proyectos destacados</p>
+      <h2 class="section-title" data-i18n="projects.title">Videos y producciones</h2>
+      <p class="section-sub" data-i18n="projects.sub">Producciones audiovisuales desarrolladas para capacitación, difusión institucional y colaboraciones académicas internacionales.</p>
+
+      <!-- Featured -->
+      <div class="featured-banner animate-in">
+        <h3 data-i18n="featured.title">🎬 Video Institucional · Universidad Simón Bolívar × SUAYED</h3>
+        <p data-i18n="featured.desc">Proyecto de colaboración internacional entre la UNAM-SUAYED y la Universidad Simón Bolívar (España). Producción completa de video de colaboración e intercambio académico.</p>
+        <button class="btn" onclick="openModal('https://www.youtube.com/watch?v=uIQldGq2uJ0', 'SUAYED × USB · Colaboración Internacional')">
+          ▶ <span data-i18n="featured.watch">Ver video completo</span>
+        </button>
+      </div>
+
+      <div class="grid-3">
+
+        <!-- Six Flags: Afecto -->
+        <article class="project-card animate-in">
+          <div class="project-thumb" onclick="openModal('afecto.mp4','Six Flags México · Video de Capacitación: Afecto')" role="button" tabindex="0" aria-label="Reproducir video Afecto - Six Flags">
+            <video src="afecto.mp4" muted preload="metadata"></video>
+            <div class="thumb-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-org">🎡 Six Flags México</span>
+            <h3 class="project-title" data-i18n="sf.afecto.title">Video de Capacitación: Afecto</h3>
+            <p class="project-desc" data-i18n="sf.afecto.desc">Video instruccional de capacitación para el personal de Six Flags México, enfocado en el valor corporativo del afecto y la atención al cliente.</p>
+            <div class="project-tags">
+              <span class="tag">Capacitación</span>
+              <span class="tag">Video instruccional</span>
+              <span class="tag">Corporate training</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Six Flags: Limpio -->
+        <article class="project-card animate-in">
+          <div class="project-thumb" onclick="openModal('limpio.mp4','Six Flags México · Video de Capacitación: Limpieza')" role="button" tabindex="0" aria-label="Reproducir video Limpio - Six Flags">
+            <video src="limpio.mp4" muted preload="metadata"></video>
+            <div class="thumb-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-org">🎡 Six Flags México</span>
+            <h3 class="project-title" data-i18n="sf.limpio.title">Video de Capacitación: Limpieza</h3>
+            <p class="project-desc" data-i18n="sf.limpio.desc">Producción instruccional sobre los estándares de limpieza e higiene del parque, orientado a la formación de nuevos colaboradores.</p>
+            <div class="project-tags">
+              <span class="tag">Capacitación</span>
+              <span class="tag">Onboarding</span>
+              <span class="tag">Estándares operativos</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Six Flags: Objetos -->
+        <article class="project-card animate-in">
+          <div class="project-thumb" onclick="openModal('objetos.mp4','Six Flags México · Video de Capacitación: Objetos')" role="button" tabindex="0" aria-label="Reproducir video Objetos - Six Flags">
+            <video src="objetos.mp4" muted preload="metadata"></video>
+            <div class="thumb-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-org">🎡 Six Flags México</span>
+            <h3 class="project-title" data-i18n="sf.objetos.title">Video de Capacitación: Objetos</h3>
+            <p class="project-desc" data-i18n="sf.objetos.desc">Video de seguridad y procedimientos sobre el manejo correcto de objetos dentro de las instalaciones del parque temático.</p>
+            <div class="project-tags">
+              <span class="tag">Seguridad</span>
+              <span class="tag">Procedimientos</span>
+              <span class="tag">E-learning</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- TikTok USB -->
+        <article class="project-card animate-in">
+          <div class="project-thumb" onclick="openModal('USBMexico_video_no_watermark.mp4','Video TikTok Institucional · Universidad Simón Bolívar México')" role="button" tabindex="0" aria-label="Reproducir TikTok institucional USB México">
+            <video src="USBMexico_video_no_watermark.mp4" muted preload="metadata"></video>
+            <div class="thumb-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-org">🎓 Univ. Simón Bolívar México</span>
+            <h3 class="project-title" data-i18n="usb.tiktok.title">Video Institucional TikTok</h3>
+            <p class="project-desc" data-i18n="usb.tiktok.desc">Video de introducción y difusión para redes sociales (TikTok) de la Universidad Simón Bolívar México. Formato vertical, enfoque juvenil y comunicación institucional.</p>
+            <div class="project-tags">
+              <span class="tag">TikTok</span>
+              <span class="tag">Redes sociales</span>
+              <span class="tag">Difusión institucional</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- SUAYED Intercambio / Brecha Digital -->
+        <article class="project-card animate-in">
+          <div class="project-thumb" onclick="openModal('https://www.youtube.com/watch?v=uIQldGq2uJ0','USB España × USB México · Integración Docente y Brecha Digital SUAyED UNAM')" role="button" tabindex="0" aria-label="Reproducir video de integración docente y brecha digital">
+            <img src="https://img.youtube.com/vi/uIQldGq2uJ0/hqdefault.jpg" alt="Thumbnail Video Intercambio" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div class="thumb-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-org">🌐 USB España × USB México · SUAyED UNAM</span>
+            <h3 class="project-title" data-i18n="suayed.intercambio.title">Integración Docente & Brecha Digital</h3>
+            <p class="project-desc" data-i18n="suayed.intercambio.desc">Proyecto de colaboración entre la Universidad Simón Bolívar (España) y USB México para el SUAyED-UNAM, enfocado en la integración de docentes adultos mayores y el cierre de la brecha digital en entornos virtuales.</p>
+            <div class="project-tags">
+              <span class="tag">Inclusión digital</span>
+              <span class="tag">Adultos mayores</span>
+              <span class="tag">SUAyED UNAM</span>
+              <span class="tag">Colaboración bilateral</span>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /grid-3 -->
+    </div>
+  </section>
+
+  <!-- ── CURSO H5P ───────────────────────────────────────── -->
+  <section class="h5p-section" id="h5p">
+    <div class="container">
+      <p class="section-label">Curso E-Learning</p>
+      <h2 class="section-title" data-i18n="h5p.title">Curso H5P · Colaboración<br/>Simón Bolívar</h2>
+      <p class="section-sub" data-i18n="h5p.sub">
+        Desarrollo completo de un curso interactivo en H5P, realizado en colaboración con la Universidad Simón Bolívar. Incluye tutoriales, guiones, listas de cotejo y objetos de aprendizaje interactivos.
+      </p>
+
+      <div class="featured-banner animate-in" style="background: linear-gradient(135deg,#0f172a 0%,#1a56db 100%);">
+        <h3>📘 Curso H5P Completo</h3>
+        <p data-i18n="h5p.banner.desc">Esquema completo del curso con objetos de aprendizaje interactivos: videos interactivos, crucigramas, relleno de blancos y más.</p>
+        <a href="curso-h5p-simon-bolivar.pdf" target="_blank" class="btn">
+          📄 <span data-i18n="h5p.banner.btn">Ver documento del curso</span>
+        </a>
+      </div>
+
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--c-dark);margin-bottom:1rem;" data-i18n="h5p.resources">Recursos del curso</h3>
+      <div class="h5p-grid animate-in">
+        <a href="h5p-recursos/curso-h5p.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">01</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r1.name">Esquema del curso</div>
+            <div class="h5p-item-type">PDF</div>
+          </div>
+        </a>
+        <a href="h5p-recursos/descripcion-video-interactivo.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">02</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r2.name">Video Interactivo</div>
+            <div class="h5p-item-type">Descripción · PDF</div>
+          </div>
+        </a>
+        <a href="h5p-recursos/descripcion-crucigrama.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">03</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r3.name">Crucigrama Interactivo</div>
+            <div class="h5p-item-type">Descripción · PDF</div>
+          </div>
+        </a>
+        <a href="h5p-recursos/descripcion-rellenar-blancos.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">04</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r4.name">Relleno de Blancos</div>
+            <div class="h5p-item-type">Descripción · PDF</div>
+          </div>
+        </a>
+        <a href="h5p-recursos/tutorial-crucigrama.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">05</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r5.name">Tutorial: Crucigrama</div>
+            <div class="h5p-item-type">Tutorial · PDF</div>
+          </div>
+        </a>
+        <a href="h5p-recursos/tutorial-espacios-blanco.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">06</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r6.name">Tutorial: Espacios en Blanco</div>
+            <div class="h5p-item-type">Tutorial · PDF</div>
+          </div>
+        </a>
+        <a href="h5p-recursos/tutorial-video-interactivo.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">07</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r7.name">Tutorial: Video Interactivo</div>
+            <div class="h5p-item-type">Tutorial · PDF</div>
+          </div>
+        </a>
+        <a href="h5p-recursos/listas-cotejo-unam.pdf" target="_blank" class="h5p-item">
+          <div class="h5p-num">08</div>
+          <div>
+            <div class="h5p-item-name" data-i18n="h5p.r8.name">Listas de Cotejo UNAM</div>
+            <div class="h5p-item-type">Evaluación · PDF</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--c-dark);margin-bottom:1rem;" data-i18n="h5p.scripts">Guiones de video</h3>
+      <div class="grid-3 animate-in">
+        <a href="h5p-recursos/guiones/guion-crucigrama.pdf" target="_blank" class="doc-card">
+          <div class="doc-icon pdf">📄</div>
+          <div class="doc-info">
+            <h3 data-i18n="h5p.s1">Guión: Crucigrama</h3>
+            <p data-i18n="h5p.s1.desc">Guión detallado del video tutorial sobre el crucigrama interactivo.</p>
+          </div>
+        </a>
+        <a href="h5p-recursos/guiones/guion-huecos.pdf" target="_blank" class="doc-card">
+          <div class="doc-icon pdf">📄</div>
+          <div class="doc-info">
+            <h3 data-i18n="h5p.s2">Guión: Huecos / Blancos</h3>
+            <p data-i18n="h5p.s2.desc">Guión del tutorial sobre el ejercicio de relleno de espacios en blanco.</p>
+          </div>
+        </a>
+        <a href="h5p-recursos/guiones/guion-video-interactivo.pdf" target="_blank" class="doc-card">
+          <div class="doc-icon pdf">📄</div>
+          <div class="doc-info">
+            <h3 data-i18n="h5p.s3">Guión: Video Interactivo</h3>
+            <p data-i18n="h5p.s3.desc">Guión completo para la producción del video interactivo del curso.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FUNDAMENTOS CURSO INTERACTIVO ─────────────────── -->
+  <section id="fundamentos" style="background: var(--c-surface); padding: 5rem 0;">
+    <div class="container">
+      <p class="section-label">Curso para Docentes</p>
+      <h2 class="section-title" data-i18n="fund.title">Fundamentos de<br/>Actividades Interactivas</h2>
+      <p class="section-sub" data-i18n="fund.sub">
+        Curso completo en formato web interactivo diseñado para docentes de licenciatura del SUAyED, UNAM. Incluye módulos sobre H5P, crucigramas, videos interactivos y ejercicios de completar espacios — todo con demos funcionales integradas.
+      </p>
+
+      <div class="featured-banner animate-in" style="background: linear-gradient(135deg, #0f172a 0%, #1d4fb8 50%, #0ea5e9 100%); margin-bottom: 2.5rem;">
+        <h3 data-i18n="fund.banner.title">🎓 Curso web · SUAyED UNAM</h3>
+        <p data-i18n="fund.banner.desc">Diseño instruccional de Emiliano Muñoz. Contenido basado en el diagnóstico de la institución de práctica. Explora los 3 módulos del curso, prueba las actividades interactivas y consulta el glosario.</p>
+        <a href="fundamentos-actividades-interactivas.html" target="_blank" class="btn">
+          🚀 <span data-i18n="fund.banner.btn">Abrir curso interactivo</span>
+        </a>
+      </div>
+
+      <div class="grid-3 animate-in">
+        <div class="project-card" style="border-top: 3px solid var(--c-primary);">
+          <div class="project-body">
+            <span class="project-org" style="font-size:.8rem;">📖 Módulo 1 · 30 min</span>
+            <h3 class="project-title" data-i18n="fund.m1.title">Fundamentos de diseño de actividades interactivas</h3>
+            <p class="project-desc" data-i18n="fund.m1.desc">Conceptos básicos de diseño instruccional digital: qué es una actividad digital y qué la vuelve interactiva.</p>
+            <div class="project-tags">
+              <span class="tag">Diseño instruccional</span>
+              <span class="tag">Conceptos base</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card" style="border-top: 3px solid var(--c-accent);">
+          <div class="project-body">
+            <span class="project-org" style="font-size:.8rem;">🧩 Módulo 2 · 1 hora</span>
+            <h3 class="project-title" data-i18n="fund.m2.title">Introducción a H5P en Moodle</h3>
+            <p class="project-desc" data-i18n="fund.m2.desc">Qué es H5P y cómo funciona dentro de Moodle. Cierra con un cuestionario para revisar los conceptos clave.</p>
+            <div class="project-tags">
+              <span class="tag">H5P</span>
+              <span class="tag">Moodle</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card" style="border-top: 3px solid #8b5cf6;">
+          <div class="project-body">
+            <span class="project-org" style="font-size:.8rem;">⚙️ Módulo 3 · 2 horas</span>
+            <h3 class="project-title" data-i18n="fund.m3.title">Integración de H5P en Moodle</h3>
+            <p class="project-desc" data-i18n="fund.m3.desc">Paso a paso para configurar crucigramas, espacios en blanco y videos interactivos. Cada actividad incluye descripción, video tutorial y PDF.</p>
+            <div class="project-tags">
+              <span class="tag">Video interactivo</span>
+              <span class="tag">Crucigrama</span>
+              <span class="tag">Fill-in-the-blank</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;" class="animate-in">
+        <div class="doc-card" style="flex: 1; min-width: 240px; cursor: default;">
+          <div class="doc-icon pdf" style="background: rgba(139,92,246,.12); font-size: 1.4rem;">🎯</div>
+          <div class="doc-info">
+            <h3 data-i18n="fund.feat1">Actividades con demo en vivo</h3>
+            <p data-i18n="fund.feat1.desc">Crucigrama, relleno de blancos y video interactivo simulado — todos funcionales en el mismo archivo HTML.</p>
+          </div>
+        </div>
+        <div class="doc-card" style="flex: 1; min-width: 240px; cursor: default;">
+          <div class="doc-icon pdf" style="background: rgba(14,165,233,.1); font-size: 1.4rem;">📋</div>
+          <div class="doc-info">
+            <h3 data-i18n="fund.feat2">Listas de cotejo evaluativas</h3>
+            <p data-i18n="fund.feat2.desc">Instrumentos de evaluación para que el docente verifique la correcta configuración de cada actividad.</p>
+          </div>
+        </div>
+        <div class="doc-card" style="flex: 1; min-width: 240px; cursor: default;">
+          <div class="doc-icon pdf" style="background: rgba(245,158,11,.1); font-size: 1.4rem;">📚</div>
+          <div class="doc-info">
+            <h3 data-i18n="fund.feat3">Glosario y fuentes</h3>
+            <p data-i18n="fund.feat3.desc">Glosario de términos clave (H5P, Moodle, retroalimentación, video interactivo) con fuentes académicas citadas.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── DOCUMENTOS ─────────────────────────────────────── -->
+  <section class="projects" id="documentos" style="background:var(--c-surface);">
+    <div class="container">
+      <p class="section-label" data-i18n="docs.label">Documentos</p>
+      <h2 class="section-title" data-i18n="docs.title">Materiales y dinámicas</h2>
+      <p class="section-sub" data-i18n="docs.sub">Recursos de formación, guías y materiales didácticos desarrollados para distintos contextos de aprendizaje.</p>
+
+      <div class="grid-2 animate-in">
+        <a href="dinamicas-sixflags.pdf" target="_blank" class="doc-card">
+          <div class="doc-icon pdf">📋</div>
+          <div class="doc-info">
+            <h3 data-i18n="docs.sf">Dinámicas de Capacitación · Six Flags México</h3>
+            <p data-i18n="docs.sf.desc">Documento con las dinámicas y actividades diseñadas para la capacitación del personal de Six Flags México. Incluye metodología, objetivos y actividades instruccionales.</p>
+          </div>
+        </a>
+        <a href="curso-h5p-simon-bolivar.pdf" target="_blank" class="doc-card">
+          <div class="doc-icon pdf">📘</div>
+          <div class="doc-info">
+            <h3 data-i18n="docs.h5p">Curso H5P · Colaboración Simón Bolívar</h3>
+            <p data-i18n="docs.h5p.desc">Documentación completa del curso E-Learning desarrollado en colaboración con la Universidad Simón Bolívar. Incluye estructura, actividades y objetos de aprendizaje.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACTO ───────────────────────────────────────── -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="contact-card animate-in">
+        <h2 data-i18n="contact.title">¿Tienes un proyecto en mente?</h2>
+        <p data-i18n="contact.sub">Estoy disponible para colaborar en proyectos de diseño instruccional, e-learning, producción de contenido y capacitación.</p>
+        <a href="mailto:carlosemilianomunozramirez@gmail.com" class="contact-email">
+          ✉️ carlosemilianomunozramirez@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <p>© 2024 Carlos Emiliano Muñoz Ramírez · <span data-i18n="footer.text">Diseñador Instruccional & E-Learning</span></p>
+  </footer>
+
+  <!-- ── VIDEO MODAL ────────────────────────────────────── -->
+  <div class="modal-backdrop" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle"></span>
+        <button class="modal-close" id="modalClose" aria-label="Cerrar">✕</button>
+      </div>
+      <video class="modal-video" id="modalVideo" controls playsinline></video>
+      <iframe class="modal-video" id="modalIframe" style="display:none;width:100%;aspect-ratio:16/9;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- ── SCRIPTS ────────────────────────────────────────── -->
+  <script>
+    /* ── i18n ──────────────────────────────────────────── */
+    const translations = {
+      es: {
+        'nav.about': 'Sobre mí', 'nav.projects': 'Proyectos', 'nav.fundamentos': 'Curso Interactivo', 'nav.docs': 'Documentos', 'nav.contact': 'Contacto',
+        'hero.badge': 'Disponible para proyectos',
+        'hero.title': 'Diseñador Instruccional & E-Learning',
+        'hero.cta1': '▶ Ver proyectos', 'hero.cta2': 'Contáctame',
+        'stats.projects': 'Proyectos clave', 'stats.orgs': 'Organizaciones', 'stats.resources': 'Recursos digitales', 'stats.tools': 'Herramientas e-learning',
+        'about.label': 'Sobre mí', 'about.title': 'Diseñando experiencias\nde aprendizaje que impactan',
+        'about.desc': 'Soy diseñador instruccional con experiencia en creación de contenido digital educativo, producción de videos de capacitación y desarrollo de cursos en plataformas como Moodle y H5P. He colaborado con instituciones académicas y empresas como Six Flags México y la Universidad Simón Bolívar.',
+        'projects.label': 'Proyectos destacados', 'projects.title': 'Videos y producciones',
+        'projects.sub': 'Producciones audiovisuales desarrolladas para capacitación, difusión institucional y colaboraciones académicas internacionales.',
+        'featured.title': '🎬 Video Institucional · Universidad Simón Bolívar × SUAYED',
+        'featured.desc': 'Proyecto de colaboración internacional entre la UNAM-SUAYED y la Universidad Simón Bolívar (España). Producción completa de video de colaboración e intercambio académico.',
+        'featured.watch': 'Ver video completo',
+        'sf.afecto.title': 'Video de Capacitación: Afecto',
+        'sf.afecto.desc': 'Video instruccional de capacitación para el personal de Six Flags México, enfocado en el valor corporativo del afecto y la atención al cliente.',
+        'sf.limpio.title': 'Video de Capacitación: Limpieza',
+        'sf.limpio.desc': 'Producción instruccional sobre los estándares de limpieza e higiene del parque, orientado a la formación de nuevos colaboradores.',
+        'sf.objetos.title': 'Video de Capacitación: Objetos',
+        'sf.objetos.desc': 'Video de seguridad y procedimientos sobre el manejo correcto de objetos dentro de las instalaciones del parque temático.',
+        'usb.tiktok.title': 'Video Institucional TikTok',
+        'usb.tiktok.desc': 'Video de introducción y difusión para redes sociales (TikTok) de la Universidad Simón Bolívar México. Formato vertical, enfoque juvenil y comunicación institucional.',
+        'suayed.intercambio.title': 'Integración Docente & Brecha Digital',
+        'suayed.intercambio.desc': 'Proyecto de colaboración entre la Universidad Simón Bolívar (España) y USB México para el SUAyED-UNAM, enfocado en la integración de docentes adultos mayores y el cierre de la brecha digital en entornos virtuales.',
+        'h5p.title': 'Curso H5P · Colaboración\nSimón Bolívar',
+        'h5p.sub': 'Desarrollo completo de un curso interactivo en H5P, realizado en colaboración con la Universidad Simón Bolívar. Incluye tutoriales, guiones, listas de cotejo y objetos de aprendizaje interactivos.',
+        'h5p.banner.desc': 'Esquema completo del curso con objetos de aprendizaje interactivos: videos interactivos, crucigramas, relleno de blancos y más.',
+        'h5p.banner.btn': 'Ver documento del curso',
+        'h5p.resources': 'Recursos del curso', 'h5p.scripts': 'Guiones de video',
+        'h5p.r1.name': 'Esquema del curso', 'h5p.r2.name': 'Video Interactivo', 'h5p.r3.name': 'Crucigrama Interactivo',
+        'h5p.r4.name': 'Relleno de Blancos', 'h5p.r5.name': 'Tutorial: Crucigrama', 'h5p.r6.name': 'Tutorial: Espacios en Blanco',
+        'h5p.r7.name': 'Tutorial: Video Interactivo', 'h5p.r8.name': 'Listas de Cotejo UNAM',
+        'h5p.s1': 'Guión: Crucigrama', 'h5p.s1.desc': 'Guión detallado del video tutorial sobre el crucigrama interactivo.',
+        'h5p.s2': 'Guión: Huecos / Blancos', 'h5p.s2.desc': 'Guión del tutorial sobre el ejercicio de relleno de espacios en blanco.',
+        'h5p.s3': 'Guión: Video Interactivo', 'h5p.s3.desc': 'Guión completo para la producción del video interactivo del curso.',
+        'fund.title': 'Fundamentos de\nActividades Interactivas',
+        'fund.sub': 'Curso completo en formato web interactivo diseñado para docentes de licenciatura del SUAyED, UNAM. Incluye módulos sobre H5P, crucigramas, videos interactivos y ejercicios de completar espacios — todo con demos funcionales integradas.',
+        'fund.banner.title': '🎓 Curso web · SUAyED UNAM',
+        'fund.banner.desc': 'Diseño instruccional de Emiliano Muñoz. Contenido basado en el diagnóstico de la institución de práctica. Explora los 3 módulos del curso, prueba las actividades interactivas y consulta el glosario.',
+        'fund.banner.btn': 'Abrir curso interactivo',
+        'fund.m1.title': 'Fundamentos de diseño de actividades interactivas',
+        'fund.m1.desc': 'Conceptos básicos de diseño instruccional digital: qué es una actividad digital y qué la vuelve interactiva.',
+        'fund.m2.title': 'Introducción a H5P en Moodle',
+        'fund.m2.desc': 'Qué es H5P y cómo funciona dentro de Moodle. Cierra con un cuestionario para revisar los conceptos clave.',
+        'fund.m3.title': 'Integración de H5P en Moodle',
+        'fund.m3.desc': 'Paso a paso para configurar crucigramas, espacios en blanco y videos interactivos. Cada actividad incluye descripción, video tutorial y PDF.',
+        'fund.feat1': 'Actividades con demo en vivo',
+        'fund.feat1.desc': 'Crucigrama, relleno de blancos y video interactivo simulado — todos funcionales en el mismo archivo HTML.',
+        'fund.feat2': 'Listas de cotejo evaluativas',
+        'fund.feat2.desc': 'Instrumentos de evaluación para que el docente verifique la correcta configuración de cada actividad.',
+        'fund.feat3': 'Glosario y fuentes',
+        'fund.feat3.desc': 'Glosario de términos clave (H5P, Moodle, retroalimentación, video interactivo) con fuentes académicas citadas.',
+        'docs.label': 'Documentos', 'docs.title': 'Materiales y dinámicas',
+        'docs.sub': 'Recursos de formación, guías y materiales didácticos desarrollados para distintos contextos de aprendizaje.',
+        'docs.sf': 'Dinámicas de Capacitación · Six Flags México',
+        'docs.sf.desc': 'Documento con las dinámicas y actividades diseñadas para la capacitación del personal de Six Flags México.',
+        'docs.h5p': 'Curso H5P · Colaboración Simón Bolívar',
+        'docs.h5p.desc': 'Documentación completa del curso E-Learning desarrollado en colaboración con la Universidad Simón Bolívar.',
+        'contact.title': '¿Tienes un proyecto en mente?',
+        'contact.sub': 'Estoy disponible para colaborar en proyectos de diseño instruccional, e-learning, producción de contenido y capacitación.',
+        'footer.text': 'Diseñador Instruccional & E-Learning',
+      },
+      en: {
+        'nav.about': 'About', 'nav.projects': 'Projects', 'nav.fundamentos': 'Interactive Course', 'nav.docs': 'Documents', 'nav.contact': 'Contact',
+        'hero.badge': 'Available for projects',
+        'hero.title': 'Instructional Designer & E-Learning Specialist',
+        'hero.cta1': '▶ View projects', 'hero.cta2': 'Contact me',
+        'stats.projects': 'Key projects', 'stats.orgs': 'Organizations', 'stats.resources': 'Digital resources', 'stats.tools': 'E-learning tools',
+        'about.label': 'About me', 'about.title': 'Designing learning experiences\nthat make an impact',
+        'about.desc': 'I am an instructional designer with experience in creating digital educational content, producing training videos, and developing courses on platforms like Moodle and H5P. I have collaborated with academic institutions and companies such as Six Flags México and Universidad Simón Bolívar.',
+        'projects.label': 'Featured projects', 'projects.title': 'Videos & productions',
+        'projects.sub': 'Audiovisual productions developed for corporate training, institutional communication, and international academic collaborations.',
+        'featured.title': '🎬 Institutional Video · Universidad Simón Bolívar × SUAYED',
+        'featured.desc': 'International collaboration project between UNAM-SUAYED and Universidad Simón Bolívar (Spain). Full production of collaboration and academic exchange video.',
+        'featured.watch': 'Watch full video',
+        'sf.afecto.title': 'Training Video: Affection',
+        'sf.afecto.desc': 'Instructional training video for Six Flags México staff, focused on the corporate value of affection and customer care.',
+        'sf.limpio.title': 'Training Video: Cleanliness',
+        'sf.limpio.desc': 'Instructional production covering park cleanliness and hygiene standards, aimed at onboarding new team members.',
+        'sf.objetos.title': 'Training Video: Objects',
+        'sf.objetos.desc': 'Safety and procedures video on the proper handling of objects within the theme park facilities.',
+        'usb.tiktok.title': 'Institutional TikTok Video',
+        'usb.tiktok.desc': 'Introduction and social media video (TikTok format) for Universidad Simón Bolívar México. Vertical format, youth-oriented approach and institutional communication.',
+        'suayed.intercambio.title': 'Faculty Integration & Digital Divide',
+        'suayed.intercambio.desc': 'Collaborative project between Universidad Simón Bolívar (Spain) and USB México for SUAyED-UNAM, focused on onboarding senior educators and bridging the digital divide in virtual learning.',
+        'h5p.title': 'H5P Course · Simón Bolívar\nCollaboration',
+        'h5p.sub': 'Full development of an interactive H5P course, created in collaboration with Universidad Simón Bolívar. Includes tutorials, scripts, checklists, and interactive learning objects.',
+        'h5p.banner.desc': 'Complete course outline with interactive learning objects: interactive videos, crosswords, fill-in-the-blank, and more.',
+        'h5p.banner.btn': 'View course document',
+        'h5p.resources': 'Course resources', 'h5p.scripts': 'Video scripts',
+        'h5p.r1.name': 'Course outline', 'h5p.r2.name': 'Interactive Video', 'h5p.r3.name': 'Interactive Crossword',
+        'h5p.r4.name': 'Fill-in-the-Blank', 'h5p.r5.name': 'Tutorial: Crossword', 'h5p.r6.name': 'Tutorial: Blank Spaces',
+        'h5p.r7.name': 'Tutorial: Interactive Video', 'h5p.r8.name': 'UNAM Checklists',
+        'h5p.s1': 'Script: Crossword', 'h5p.s1.desc': 'Detailed script for the crossword interactive video tutorial.',
+        'h5p.s2': 'Script: Fill-in-the-Blank', 'h5p.s2.desc': 'Script for the fill-in-the-blank exercise tutorial.',
+        'h5p.s3': 'Script: Interactive Video', 'h5p.s3.desc': 'Full script for the course interactive video production.',
+        'fund.title': 'Fundamentals of\nInteractive Activities',
+        'fund.sub': 'Complete web-based interactive course designed for undergraduate faculty at SUAyED, UNAM. Covers H5P, crosswords, interactive videos and fill-in-the-blank exercises — all with live functional demos.',
+        'fund.banner.title': '🎓 Web course · SUAyED UNAM',
+        'fund.banner.desc': 'Instructional design by Emiliano Muñoz. Content based on the institutional practice diagnosis. Explore all 3 modules, try the interactive activities, and consult the glossary.',
+        'fund.banner.btn': 'Open interactive course',
+        'fund.m1.title': 'Fundamentals of interactive activity design',
+        'fund.m1.desc': 'Core concepts of digital instructional design: what a digital activity is and what makes it interactive.',
+        'fund.m2.title': 'Introduction to H5P in Moodle',
+        'fund.m2.desc': 'What H5P is and how it works inside Moodle. Ends with a quiz to review key concepts.',
+        'fund.m3.title': 'H5P Integration in Moodle',
+        'fund.m3.desc': 'Step-by-step setup for crosswords, fill-in-the-blank and interactive videos. Each activity includes a description, video tutorial and PDF guide.',
+        'fund.feat1': 'Live demo activities',
+        'fund.feat1.desc': 'Crossword, fill-in-the-blank, and simulated interactive video — all fully functional in one HTML file.',
+        'fund.feat2': 'Evaluation checklists',
+        'fund.feat2.desc': 'Assessment instruments so educators can verify correct activity configuration.',
+        'fund.feat3': 'Glossary & references',
+        'fund.feat3.desc': 'Glossary of key terms (H5P, Moodle, feedback, interactive video) with cited academic sources.',
+        'docs.label': 'Documents', 'docs.title': 'Materials & dynamics',
+        'docs.sub': 'Training resources, guides, and instructional materials developed for various learning contexts.',
+        'docs.sf': 'Training Dynamics · Six Flags México',
+        'docs.sf.desc': 'Document containing the dynamics and activities designed for Six Flags México staff training.',
+        'docs.h5p': 'H5P Course · Simón Bolívar Collaboration',
+        'docs.h5p.desc': 'Complete documentation of the E-Learning course developed in collaboration with Universidad Simón Bolívar.',
+        'contact.title': 'Have a project in mind?',
+        'contact.sub': 'I\'m available to collaborate on instructional design, e-learning, content production, and training projects.',
+        'footer.text': 'Instructional Designer & E-Learning Specialist',
+      }
+    };
+
+    let currentLang = 'es';
+
+    function applyTranslations(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.documentElement.lang = lang;
+    }
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      document.getElementById('langLabel').textContent = currentLang === 'es' ? 'EN' : 'ES';
+      applyTranslations(currentLang);
+    });
+
+    /* ── VIDEO MODAL ───────────────────────────────────── */
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalIframe = document.getElementById('modalIframe');
+    const modalTitle = document.getElementById('modalTitle');
+
+    function getYouTubeId(url) {
+      if (!url) return null;
+      const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+      return m ? m[1] : null;
+    }
+
+    function openModal(src, title) {
+      modalTitle.textContent = title;
+      const ytId = getYouTubeId(src);
+      if (ytId) {
+        modalVideo.style.display = 'none';
+        modalVideo.pause();
+        modalVideo.src = '';
+        modalIframe.style.display = 'block';
+        modalIframe.src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
+      } else {
+        modalIframe.style.display = 'none';
+        modalIframe.src = '';
+        modalVideo.style.display = 'block';
+        modalVideo.src = src;
+        modalVideo.play().catch(() => {});
+      }
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modalVideo.pause();
+      modalVideo.src = '';
+      if (modalIframe) modalIframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    /* Keyboard: play on Enter/Space for thumb elements */
+    document.querySelectorAll('.project-thumb[role="button"]').forEach(thumb => {
+      thumb.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          thumb.click();
+        }
+      });
+    });
+
+    /* ── SCROLL ANIMATIONS ─────────────────────────────── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // stagger delay
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+    /* ── VIDEO HOVER PREVIEW ───────────────────────────── */
+    document.querySelectorAll('.project-thumb').forEach(thumb => {
+      const video = thumb.querySelector('video');
+      if (!video) return;
+      thumb.addEventListener('mouseenter', () => {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      });
+      thumb.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  </script>
+
+</body>
+</html>
